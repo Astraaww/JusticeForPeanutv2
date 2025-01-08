@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
     public Camera uiCamera;
 
     public Canvas canvasToDisable;
+
+    private Chrono chrono;
     
 
     private void Awake()
@@ -26,9 +28,9 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         uiCamera.enabled = false;
-        Debug.Log("False");
-    }
 
+        chrono = FindObjectOfType<Chrono>(); //accède au script Chrono
+    }
 
     private void OnEnable()
     {
@@ -45,33 +47,49 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        mainCamera.enabled = false;
-        uiCamera.enabled = true;
+        pauseMenu.SetActive(true); //Active le canvas du menu pause et désactive celui du jeu
         canvasToDisable.enabled = false;
+
+        Time.timeScale = 0f; //arrête le temps 
+
+        mainCamera.enabled = false; //disable la camera de jeu et enable celle de l'UI
+        uiCamera.enabled = true;
+
+        Cursor.visible = true; //Fait réapparaitre la souris mais l'empêche de sortir de l'écran
+        Cursor.lockState = CursorLockMode.Confined;
+
         isPaused = true;
     }
 
     public void ResumGame()
     {
         pauseMenu.SetActive(false);
+        canvasToDisable.enabled = true;
+
         Time.timeScale = 1f;
+
         mainCamera.enabled = true;
         uiCamera.enabled = false;
-        canvasToDisable.enabled = true;
+        
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         isPaused = false;
     }
    
     private void PressPause(InputAction.CallbackContext context)
     {
-        if (isPaused)
+        if (isPaused) //resume la partie si on réappuit sur la touche P
         {
-            ResumGame();
+           ResumGame();
         }
         else
         {
-            PauseGame();
+            if (chrono.isEnded == false)  //permet de ne mettre en pause seulement si on est pas dans l'écran de fin de jeu
+            {
+               PauseGame();
+            }
         }
     }
 

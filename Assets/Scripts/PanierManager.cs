@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PanierManager : MonoBehaviour
@@ -12,10 +10,14 @@ public class PanierManager : MonoBehaviour
 
     public ScoreSystem scoreSystem;
 
+    public Vector3 startPos;
+
     //Permet de savoir dès le lancement quel est le renderer//
     private void Awake()
     {
         rend = GetComponent<Renderer>();
+
+        startPos = transform.position;
     }
 
     //Foncion et action de la coroutine//

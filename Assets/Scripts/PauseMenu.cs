@@ -16,7 +16,6 @@ public class PauseMenu : MonoBehaviour
     public Canvas canvasToDisable;
 
     private Chrono chrono;
-    
 
     private void Awake()
     {
@@ -74,6 +73,7 @@ public class PauseMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
 
         isPaused = false;
     }

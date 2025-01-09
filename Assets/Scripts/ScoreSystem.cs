@@ -5,13 +5,27 @@ public class ScoreSystem : MonoBehaviour
 {
     public TMP_Text scoreText;
 
-    public int currentScore = 0;
+    public int currentScore;
+    public int startingScore;
 
-    //Augmente le score
+    [Header("Sound")]
+    public AudioSource source;
+    public AudioClip clip;
+
+    private void Awake() 
+    {
+        startingScore = 0;
+        currentScore = startingScore;
+    }
     public void AugmenteScore()
     {
-        currentScore += 1;
-        scoreText.SetText(currentScore.ToString());
-        //Modifie le texte du canva
+        currentScore += 1; //incrémente le score
+        SetScoreText();
+        source.PlayOneShot(clip);
+    }
+
+    public void SetScoreText()
+    {
+        scoreText.SetText(currentScore.ToString()); //Modifie le texte du canva
     }
 }

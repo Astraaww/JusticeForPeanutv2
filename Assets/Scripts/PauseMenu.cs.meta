@@ -3,7 +3,15 @@ guid: aa37846ab20e7d549afd8586bd1b1119
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pauseMenu: {instanceID: 0}
+  - mainCamera: {instanceID: 0}
+  - uiCamera: {instanceID: 0}
+  - canvasToDisable: {instanceID: 0}
+  - inGameMusic: {instanceID: 0}
+  - menuMusic: {instanceID: 0}
+  - audioClip1: {fileID: 8300000, guid: 8044858ca07d8ad47bb8539af803dc6d, type: 3}
+  - audioClip2: {fileID: 8300000, guid: ad1f4126eb6f0f142a959acc407026f9, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
